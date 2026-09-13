@@ -27,7 +27,6 @@
         body {
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-        /* Checkerboard pattern for transparent canvas background preview */
         .bg-checkerboard {
             background-color: #e5e7eb;
             background-image: linear-gradient(45deg, #cbd5e1 25%, transparent 25%), linear-gradient(-45deg, #cbd5e1 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #cbd5e1 75%), linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
@@ -40,10 +39,21 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between max-w-5xl mx-auto px-6 py-8 bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+<body class="min-h-screen flex flex-col justify-between max-w-5xl mx-auto px-6 py-4 bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+
+    <!-- Interactive Callout / Announcement Banner -->
+    <div id="announcement-banner" class="mb-4 p-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-between shadow-md text-xs font-medium">
+        <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold uppercase text-[10px]">New</span>
+            <span>Client-side Background Remover tool is now live on OpenUtility!</span>
+        </div>
+        <button onclick="document.getElementById('announcement-banner').remove()" class="p-1 hover:bg-white/20 rounded-lg transition" aria-label="Dismiss">
+            <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+    </div>
 
     <!-- Header / Navbar -->
-    <header class="flex justify-between items-center py-6 border-b border-slate-200 dark:border-slate-800/80">
+    <header class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800/80 relative">
         <div class="flex items-center gap-3">
             <img src="logo.png" alt="OpenUtility Logo" class="w-10 h-10 object-contain" onerror="this.src='https://via.placeholder.com/40?text=OU'">
             <div>
@@ -51,9 +61,11 @@
                 <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">Open Source Tool Suite</p>
             </div>
         </div>
-        <div class="flex items-center gap-6">
-            <nav class="hidden sm:flex space-x-6 text-sm text-slate-600 dark:text-slate-400 font-medium">
+
+        <div class="flex items-center gap-4">
+            <nav class="hidden md:flex space-x-6 text-sm text-slate-600 dark:text-slate-400 font-medium">
                 <a href="#websites" class="hover:text-blue-500 transition">Websites & Tools</a>
+                <a href="#faq" class="hover:text-blue-500 transition">FAQ</a>
                 <a href="#about" class="hover:text-blue-500 transition">About</a>
                 <a href="#creator" class="hover:text-blue-500 transition">Creator</a>
             </nav>
@@ -63,6 +75,19 @@
                 <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 hidden"></i>
                 <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4 hidden"></i>
             </button>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-toggle" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" aria-label="Toggle Menu">
+                <i data-lucide="menu" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <!-- Refined Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 mt-2 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl z-40 flex flex-col gap-3 text-sm font-medium">
+            <a href="#websites" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Websites & Tools</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">FAQ</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">About</a>
+            <a href="#creator" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Creator</a>
         </div>
     </header>
 
@@ -116,7 +141,7 @@
             </div>
         </section>
 
-        <!-- Directory / Websites & Tools Section -->
+        <!-- Directory Section -->
         <section id="websites" class="space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800/80 pb-4">
                 <div>
@@ -124,15 +149,12 @@
                     <p class="text-xs text-slate-500 dark:text-slate-400" id="tool-count">4 Utilities Available</p>
                 </div>
 
-                <!-- Search Bar & Filters -->
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                    <!-- Search Input -->
                     <div class="relative">
                         <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         <input type="text" id="search-input" placeholder="Search tools or sites..." class="w-full sm:w-64 pl-9 pr-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-800 text-xs focus:outline-none focus:border-blue-500 transition">
                     </div>
 
-                    <!-- Category Filter Buttons -->
                     <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800" id="category-filters">
                         <button data-filter="all" class="filter-btn active-filter px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-blue-600 text-white">All</button>
                         <button data-filter="website" class="filter-btn px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">Websites</button>
@@ -144,7 +166,6 @@
             <!-- Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6" id="tools-grid">
 
-                <!-- Item 1: MC Tools -->
                 <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="mc tools servertoolkit minecraft diagnostics ping checker">
                     <div>
                         <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
@@ -160,7 +181,6 @@
                     </a>
                 </div>
 
-                <!-- Item 2: Speed Test -->
                 <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="speed test latency ping check network response time connection">
                     <div>
                         <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
@@ -176,7 +196,6 @@
                     </a>
                 </div>
 
-                <!-- Item 3: IP & DNS Diagnostic -->
                 <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="utility" data-title="ip lookup dns checker geolocation mx records networking domain host location">
                     <div>
                         <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
@@ -192,7 +211,6 @@
                     </button>
                 </div>
 
-                <!-- Item 4: Background Remover -->
                 <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="utility" data-title="background remover transparent image png key photo erase photo editor chroma">
                     <div>
                         <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
@@ -210,7 +228,6 @@
 
             </div>
 
-            <!-- Empty Search State -->
             <div id="no-results" class="hidden text-center py-12 space-y-3">
                 <i data-lucide="search-x" class="w-10 h-10 mx-auto text-slate-500"></i>
                 <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">No matching utilities found</p>
@@ -218,12 +235,70 @@
             </div>
         </section>
 
+        <!-- Structured FAQ Section -->
+        <section id="faq" class="space-y-6 pt-6">
+            <div class="border-b border-slate-200 dark:border-slate-800/80 pb-4">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Frequently Asked Questions</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Everything you need to know about the OpenUtility platform</p>
+            </div>
+
+            <div class="space-y-4 max-w-3xl">
+                <details class="group p-5 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                    <summary class="flex items-center justify-between font-semibold text-sm text-slate-900 dark:text-white">
+                        <span>Are my uploaded files or data saved on a server?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        No. All image manipulation and client-side utilities execute entirely within your browser using JavaScript HTML5 Canvas APIs. Your images and inputs never leave your device or get uploaded to any external server.
+                    </p>
+                </details>
+
+                <details class="group p-5 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                    <summary class="flex items-center justify-between font-semibold text-sm text-slate-900 dark:text-white">
+                        <span>Is OpenUtility completely free?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Yes, 100% free and open-source. There are no paywalls, subscriptions, rate limits, or advertisements.
+                    </p>
+                </details>
+
+                <details class="group p-5 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                    <summary class="flex items-center justify-between font-semibold text-sm text-slate-900 dark:text-white">
+                        <span>How can I contribute or report bugs?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        You can open an issue or pull request directly on our GitHub repository. We welcome community suggestions, code fixes, and new utility ideas!
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Contribution / GitHub CTA Card -->
+        <section class="p-8 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <div class="space-y-2 text-center md:text-left">
+                <h3 class="text-2xl font-extrabold tracking-tight">Want to contribute a web tool?</h3>
+                <p class="text-xs text-blue-100 max-w-xl leading-relaxed">
+                    OpenUtility is built by developers, for developers. Submit your open-source tools to be featured in our central directory.
+                </p>
+            </div>
+            <a href="https://github.com" target="_blank" class="px-6 py-3 bg-white text-blue-600 hover:bg-blue-50 text-xs font-bold rounded-xl transition shadow-md whitespace-nowrap flex items-center gap-2">
+                <i data-lucide="git-pull-request" class="w-4 h-4"></i> Submit Pull Request
+            </a>
+        </section>
+
         <!-- Meet the Creator Section -->
         <section id="creator" class="space-y-4">
             <h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Meet the Creator</h3>
             
             <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/80 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-sm dark:shadow-none">
-                <!-- Profile Image -->
                 <img src="profile.png" alt="Tamoor Choudhury" class="w-32 h-32 rounded-full object-cover border-2 border-slate-300 dark:border-slate-700 shadow-xl flex-shrink-0" onerror="this.src='https://via.placeholder.com/128?text=Tamoor'">
                 
                 <div class="space-y-3 text-center md:text-left">
@@ -271,7 +346,6 @@
                 <button onclick="closeModal('dns-modal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
 
-            <!-- Controls -->
             <div class="space-y-3">
                 <div class="flex gap-2">
                     <input type="text" id="target-input" placeholder="e.g. 1.1.1.1 or cloudflare.com (blank for your IP)" class="flex-1 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg border border-slate-300 dark:border-slate-700 text-xs focus:outline-none focus:border-blue-500">
@@ -289,7 +363,6 @@
                 </div>
             </div>
 
-            <!-- Result Header & Output -->
             <div id="dns-result-container" class="hidden space-y-2">
                 <div class="flex justify-between items-center text-xs">
                     <span class="font-bold text-slate-700 dark:text-slate-300">Results:</span>
@@ -311,7 +384,6 @@
                 <button onclick="closeModal('bg-modal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
 
-            <!-- File Upload Input -->
             <div id="bg-upload-zone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-8 text-center cursor-pointer hover:border-blue-500 transition" onclick="document.getElementById('bg-file-input').click()">
                 <i data-lucide="upload-cloud" class="w-10 h-10 mx-auto text-slate-400 mb-2"></i>
                 <p class="text-xs font-semibold text-slate-700 dark:text-slate-300">Click to upload image or drag & drop</p>
@@ -319,7 +391,6 @@
                 <input type="file" id="bg-file-input" accept="image/*" class="hidden" onchange="loadBgImage(event)">
             </div>
 
-            <!-- Editor Controls & Preview -->
             <div id="bg-editor" class="hidden space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                     <div>
@@ -336,12 +407,10 @@
                     </div>
                 </div>
 
-                <!-- Live Canvas Display -->
                 <div class="relative rounded-xl overflow-hidden border border-slate-300 dark:border-slate-800 bg-checkerboard flex items-center justify-center max-h-[350px]">
                     <canvas id="bg-canvas" class="max-w-full max-h-[350px] object-contain"></canvas>
                 </div>
 
-                <!-- Action Bar -->
                 <div class="flex gap-3 justify-end pt-2">
                     <button onclick="document.getElementById('bg-file-input').click()" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition">Change Image</button>
                     <button onclick="downloadTransparentPng()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg transition flex items-center gap-1.5"><i data-lucide="download" class="w-4 h-4"></i> Download PNG</button>
@@ -352,6 +421,12 @@
 
     <!-- Scripts -->
     <script>
+        // --- Mobile Drawer Toggle ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
         // --- Dark / Light Mode Toggle Logic ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const iconSun = document.getElementById('theme-icon-sun');
@@ -380,10 +455,9 @@
             applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
 
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // --- Visitor Counter Logic (Dynamic via CountAPI) ---
+        // --- Visitor Counter Logic ---
         async function initVisitorStats() {
             let visits = parseInt(localStorage.getItem('user_visit_count') || '0') + 1;
             localStorage.setItem('user_visit_count', visits);
@@ -399,7 +473,7 @@
         }
         initVisitorStats();
 
-        // --- Modal Control ---
+        // --- Modal Controls & Escape Key Listener ---
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
             if (id === 'dns-modal' && !document.getElementById('target-input').value) {
@@ -409,6 +483,13 @@
         function closeModal(id) {
             document.getElementById(id).classList.add('hidden');
         }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal('dns-modal');
+                closeModal('bg-modal');
+            }
+        });
 
         // --- IP Lookup & DNS Resolver Logic ---
         async function runIpLookup() {
@@ -487,7 +568,7 @@
         let currentImage = null;
 
         function loadBgImage(e) {
-            const file = e.target.files[0];
+            const file = e.target.files ? e.target.files[0] : null;
             if (!file) return;
 
             const reader = new FileReader();
@@ -521,7 +602,6 @@
             canvas.height = currentImage.height;
             ctx.drawImage(currentImage, 0, 0);
 
-            // Sample pixel at (5, 5) to avoid border artifacts
             const pixel = ctx.getImageData(5, 5, 1, 1).data;
             const hex = "#" + ((1 << 24) + (pixel[0] << 16) + (pixel[1] << 8) + pixel[2]).toString(16).slice(1);
             
@@ -538,7 +618,6 @@
             canvas.width = currentImage.width;
             canvas.height = currentImage.height;
 
-            // Clear previous buffer and redraw clean base image
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(currentImage, 0, 0);
 
@@ -555,7 +634,6 @@
                 const g = data[i + 1];
                 const b = data[i + 2];
 
-                // Euclidean distance formula
                 const distance = Math.sqrt(
                     (r - target.r) ** 2 +
                     (g - target.g) ** 2 +
@@ -563,7 +641,7 @@
                 );
 
                 if (distance <= tolerance) {
-                    data[i + 3] = 0; // Alpha channel to transparent
+                    data[i + 3] = 0;
                 }
             }
 
@@ -578,7 +656,26 @@
             link.click();
         }
 
-        // --- Live Search & Category Filtering Logic ---
+        // Drag & drop handlers
+        const uploadZone = document.getElementById('bg-upload-zone');
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, (e) => { e.preventDefault(); e.stopPropagation(); }, false);
+        });
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, () => uploadZone.classList.add('border-blue-500', 'bg-blue-50/50', 'dark:bg-blue-950/20'), false);
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, () => uploadZone.classList.remove('border-blue-500', 'bg-blue-50/50', 'dark:bg-blue-950/20'), false);
+        });
+        uploadZone.addEventListener('drop', (e) => {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('bg-file-input').files = files;
+                loadBgImage({ target: { files: files } });
+            }
+        }, false);
+
+        // --- Live Search & Category Filtering ---
         const searchInput = document.getElementById('search-input');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.tool-card');
