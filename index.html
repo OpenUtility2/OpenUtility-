@@ -25,11 +25,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between max-w-5xl mx-auto px-6 py-8 bg-slate-950 text-slate-100 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+<body class="min-h-screen flex flex-col justify-between max-w-5xl mx-auto px-6 py-8 bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
 
     <!-- Header / Navbar -->
     <header class="flex justify-between items-center py-6 border-b border-slate-200 dark:border-slate-800/80">
@@ -49,8 +49,8 @@
             
             <!-- Dark / Light Mode Switch Button -->
             <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
-                <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 hidden dark:block"></i>
-                <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4 block dark:hidden"></i>
+                <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 hidden"></i>
+                <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4 hidden"></i>
             </button>
         </div>
     </header>
@@ -60,7 +60,7 @@
 
         <!-- Hero Section -->
         <section id="about" class="text-center space-y-6 max-w-3xl mx-auto pt-6">
-            <span class="inline-flex items-center gap-2 px-3 py-1 text-xs font-mono bg-blue-500/10 text-blue-500 rounded-full border border-blue-500/20">
+            <span class="inline-flex items-center gap-2 px-3 py-1 text-xs font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full border border-blue-500/20">
                 🌱 FREE & OPEN-SOURCE WEB UTILITIES
             </span>
             <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -82,19 +82,19 @@
             <!-- Visitor Stats Bar -->
             <div class="pt-4 flex items-center justify-center gap-6 sm:gap-12">
                 <div class="flex items-center gap-2.5">
-                    <div class="p-2 rounded-lg bg-blue-500/10 text-blue-500">
+                    <div class="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400">
                         <i data-lucide="users" class="w-4 h-4"></i>
                     </div>
                     <div class="text-left">
-                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Recent Visitors</div>
-                        <div id="total-visitors" class="text-sm font-bold text-slate-900 dark:text-white font-mono">1,248</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Page Visits</div>
+                        <div id="total-visitors" class="text-sm font-bold text-slate-900 dark:text-white font-mono">Loading...</div>
                     </div>
                 </div>
 
                 <div class="h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
 
                 <div class="flex items-center gap-2.5">
-                    <div class="p-2 rounded-lg bg-green-500/10 text-green-500">
+                    <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
                         <i data-lucide="eye" class="w-4 h-4"></i>
                     </div>
                     <div class="text-left">
@@ -110,7 +110,7 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800/80 pb-4">
                 <div>
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Our Directory</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400" id="tool-count">4 Utilities Available</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400" id="tool-count">3 Utilities Available</p>
                 </div>
 
                 <!-- Search Bar & Filters -->
@@ -134,9 +134,9 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6" id="tools-grid">
 
                 <!-- Item 1: MC Tools -->
-                <div class="tool-card group p-6 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="mc tools servertoolkit minecraft diagnostics ping checker">
+                <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="mc tools servertoolkit minecraft diagnostics ping checker">
                     <div>
-                        <div class="p-3 bg-slate-100 dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4">
+                        <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
                             <i data-lucide="terminal" class="w-6 h-6"></i>
                         </div>
                         <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">MC Tools</h4>
@@ -144,15 +144,15 @@
                             Diagnostic utilities, ping checkers, and configuration helpers for Minecraft server admins.
                         </p>
                     </div>
-                    <a href="https://mctools.wiki.gd/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-500 hover:text-blue-600 pt-4 border-t border-slate-100 dark:border-slate-800/60 w-full text-left">
+                    <a href="https://mctools.wiki.gd/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 pt-4 border-t border-slate-200 dark:border-slate-800/60 w-full text-left">
                         Visit Website <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
 
                 <!-- Item 2: Speed Test -->
-                <div class="tool-card group p-6 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="speed test latency ping check network response time connection">
+                <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="speed test latency ping check network response time connection">
                     <div>
-                        <div class="p-3 bg-slate-100 dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4">
+                        <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
                             <i data-lucide="gauge" class="w-6 h-6"></i>
                         </div>
                         <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Speed Test</h4>
@@ -160,31 +160,15 @@
                             A minimal, fast, zero-fluff tool to measure ping, network latency, and connection response time.
                         </p>
                     </div>
-                    <a href="https://speedtest.govt.hu/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-500 hover:text-blue-600 pt-4 border-t border-slate-100 dark:border-slate-800/60 w-full text-left">
+                    <a href="https://speedtest.govt.hu/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 pt-4 border-t border-slate-200 dark:border-slate-800/60 w-full text-left">
                         Visit Website <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
 
-                <!-- Item 3: Hex Color Picker -->
-                <div class="tool-card group p-6 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-green-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="utility" data-title="hex color picker palette inspect preview convert color codes rgb">
+                <!-- Item 3: IP & DNS Diagnostic -->
+                <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="utility" data-title="ip lookup dns checker geolocation mx records networking domain host location">
                     <div>
-                        <div class="p-3 bg-slate-100 dark:bg-slate-800 text-green-500 rounded-xl w-fit mb-4">
-                            <i data-lucide="palette" class="w-6 h-6"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Hex Color Picker</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            A clean utility to pick, inspect, preview, and convert color codes instantly.
-                        </p>
-                    </div>
-                    <button onclick="openModal('color-modal')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-500 hover:text-blue-600 pt-4 border-t border-slate-100 dark:border-slate-800/60 w-full text-left">
-                        Launch Tool <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                </div>
-
-                <!-- Item 4: IP & DNS Diagnostic -->
-                <div class="tool-card group p-6 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="utility" data-title="ip lookup dns checker geolocation mx records networking domain host location">
-                    <div>
-                        <div class="p-3 bg-slate-100 dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4">
+                        <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
                             <i data-lucide="globe" class="w-6 h-6"></i>
                         </div>
                         <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">IP & DNS Diagnostic</h4>
@@ -192,7 +176,7 @@
                             Inspect public IP address details, geolocation, ISP, and perform live DNS record lookups.
                         </p>
                     </div>
-                    <button onclick="openModal('dns-modal')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-500 hover:text-blue-600 pt-4 border-t border-slate-100 dark:border-slate-800/60 w-full text-left">
+                    <button onclick="openModal('dns-modal')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 pt-4 border-t border-slate-200 dark:border-slate-800/60 w-full text-left">
                         Launch Tool <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </button>
                 </div>
@@ -211,7 +195,7 @@
         <section id="creator" class="space-y-4">
             <h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Meet the Creator</h3>
             
-            <div class="p-8 rounded-2xl bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/80 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-sm dark:shadow-none">
+            <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/80 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-sm dark:shadow-none">
                 <!-- Profile Image -->
                 <img src="profile.png" alt="Tamoor Choudhury" class="w-32 h-32 rounded-full object-cover border-2 border-slate-300 dark:border-slate-700 shadow-xl flex-shrink-0" onerror="this.src='https://via.placeholder.com/128?text=Tamoor'">
                 
@@ -226,10 +210,10 @@
                     </p>
 
                     <div class="flex justify-center md:justify-start gap-3 pt-1">
-                        <a href="https://github.com" target="_blank" class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-500 transition">
+                        <a href="https://github.com" target="_blank" class="p-2.5 rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-500 transition border border-slate-200 dark:border-slate-700">
                             <i data-lucide="github" class="w-4 h-4"></i>
                         </a>
-                        <a href="https://discord.com" target="_blank" class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-500 transition">
+                        <a href="https://discord.com" target="_blank" class="p-2.5 rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-500 transition border border-slate-200 dark:border-slate-700">
                             <i data-lucide="message-square" class="w-4 h-4"></i>
                         </a>
                     </div>
@@ -248,36 +232,11 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE TOOL MODALS -->
+    <!-- INTERACTIVE TOOL MODAL -->
 
-    <!-- Modal 1: Color Picker -->
-    <div id="color-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-md rounded-2xl p-6 space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <i data-lucide="palette" class="w-5 h-5 text-green-500"></i> Hex Color Picker
-                </h3>
-                <button onclick="closeModal('color-modal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-            <div class="space-y-4">
-                <input type="color" id="color-input" value="#00a3e0" oninput="updateColor(this.value)" class="w-full h-20 rounded-xl cursor-pointer border-0">
-                <div class="grid grid-cols-2 gap-2 text-xs font-mono">
-                    <div class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center">
-                        <span id="hex-val">#00a3e0</span>
-                        <button onclick="copyText('hex-val')" class="text-slate-400 hover:text-blue-500"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-                    </div>
-                    <div class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-lg flex justify-between items-center">
-                        <span id="rgb-val">rgb(0, 163, 224)</span>
-                        <button onclick="copyText('rgb-val')" class="text-slate-400 hover:text-blue-500"><i data-lucide="copy" class="w-3.5 h-3.5"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2: IP & DNS Lookup -->
+    <!-- IP & DNS Lookup Modal -->
     <div id="dns-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-lg rounded-2xl p-6 space-y-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-2xl">
             <div class="flex justify-between items-center">
                 <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     <i data-lucide="globe" class="w-5 h-5 text-blue-500"></i> IP & DNS Diagnostic
@@ -285,95 +244,107 @@
                 <button onclick="closeModal('dns-modal')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
 
+            <!-- Controls -->
             <div class="space-y-3">
                 <div class="flex gap-2">
-                    <input type="text" id="target-input" placeholder="e.g. 1.1.1.1 or cloudflare.com (leave empty for your IP)" class="flex-1 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg border border-slate-300 dark:border-slate-700 text-xs focus:outline-none focus:border-blue-500">
+                    <input type="text" id="target-input" placeholder="e.g. 1.1.1.1 or cloudflare.com (blank for your IP)" class="flex-1 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg border border-slate-300 dark:border-slate-700 text-xs focus:outline-none focus:border-blue-500">
                     <select id="record-type" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg border border-slate-300 dark:border-slate-700 text-xs focus:outline-none">
-                        <option value="A">A Record</option>
-                        <option value="AAAA">AAAA Record</option>
-                        <option value="MX">MX Record</option>
-                        <option value="TXT">TXT Record</option>
+                        <option value="A">A</option>
+                        <option value="AAAA">AAAA</option>
+                        <option value="MX">MX</option>
+                        <option value="TXT">TXT</option>
+                        <option value="NS">NS</option>
                     </select>
                 </div>
                 <div class="flex gap-2">
-                    <button onclick="runIpLookup()" class="flex-1 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg transition">Lookup IP Info</button>
+                    <button onclick="runIpLookup()" class="flex-1 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-lg transition">Lookup IP Details</button>
                     <button onclick="runDnsLookup()" class="flex-1 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs rounded-lg transition">Resolve DNS</button>
                 </div>
             </div>
 
-            <div id="dns-result" class="text-xs font-mono p-4 bg-slate-100 dark:bg-slate-950 rounded-xl overflow-x-auto max-h-56 hidden space-y-1 text-slate-700 dark:text-slate-300">
+            <!-- Result Header & Output -->
+            <div id="dns-result-container" class="hidden space-y-2">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="font-bold text-slate-700 dark:text-slate-300">Results:</span>
+                    <button onclick="copyResults()" class="text-blue-500 hover:underline flex items-center gap-1 text-[11px]"><i data-lucide="copy" class="w-3 h-3"></i> Copy Output</button>
+                </div>
+                <div id="dns-result" class="text-xs font-mono p-4 bg-slate-100 dark:bg-slate-950 rounded-xl overflow-x-auto max-h-60 space-y-1 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800">
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
+        // --- Dark / Light Mode Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const iconSun = document.getElementById('theme-icon-sun');
+        const iconMoon = document.getElementById('theme-icon-moon');
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                iconSun.classList.remove('hidden');
+                iconMoon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                iconSun.classList.add('hidden');
+                iconMoon.classList.remove('hidden');
+            }
+            localStorage.setItem('openutility_theme', theme);
+        }
+
+        const savedTheme = localStorage.getItem('openutility_theme') || 
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+        applyTheme(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // --- Theme Switch Logic ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-
-        if (localStorage.getItem('theme') === 'light') {
-            htmlElement.classList.remove('dark');
-        } else {
-            htmlElement.classList.add('dark');
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            if (htmlElement.classList.contains('dark')) {
-                htmlElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                htmlElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-
-        // --- Visitor Counter Logic ---
-        function initVisitorStats() {
+        // --- Visitor Counter Logic (Dynamic via CountAPI) ---
+        async function initVisitorStats() {
             // Personal visit counter
             let visits = parseInt(localStorage.getItem('user_visit_count') || '0') + 1;
             localStorage.setItem('user_visit_count', visits);
             document.getElementById('user-visits').innerText = visits.toLocaleString();
 
-            // Estimated total site visits base calculation
-            const baseVisitors = 1240;
-            const globalVisits = baseVisitors + visits * 3;
-            document.getElementById('total-visitors').innerText = globalVisits.toLocaleString();
+            // Fetch live global visits via CountAPI
+            try {
+                const res = await fetch('https://api.countapi.xyz/hit/openutility-org/visits');
+                const data = await res.json();
+                document.getElementById('total-visitors').innerText = data.value.toLocaleString();
+            } catch {
+                // Fallback estimate if rate limited
+                document.getElementById('total-visitors').innerText = (1280 + visits * 2).toLocaleString();
+            }
         }
         initVisitorStats();
 
-        // --- Modal Control Functions ---
+        // --- Modal Control ---
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
+            if (id === 'dns-modal' && !document.getElementById('target-input').value) {
+                runIpLookup(); // Auto-lookup visitor's IP on launch
+            }
         }
         function closeModal(id) {
             document.getElementById(id).classList.add('hidden');
         }
 
-        // --- Color Picker Function ---
-        function updateColor(val) {
-            document.getElementById('hex-val').innerText = val;
-            const r = parseInt(val.slice(1, 3), 16);
-            const g = parseInt(val.slice(3, 5), 16);
-            const b = parseInt(val.slice(5, 7), 16);
-            document.getElementById('rgb-val').innerText = `rgb(${r}, ${g}, ${b})`;
-        }
-
-        function copyText(elementId) {
-            const text = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(text);
-            alert("Copied to clipboard: " + text);
-        }
-
         // --- IP Lookup & DNS Resolver Logic ---
         async function runIpLookup() {
             const input = document.getElementById('target-input').value.trim();
+            const container = document.getElementById('dns-result-container');
             const res = document.getElementById('dns-result');
-            res.classList.remove('hidden');
-            res.innerHTML = '<span class="text-yellow-500">Fetching IP data...</span>';
+            
+            container.classList.remove('hidden');
+            res.innerHTML = '<span class="text-yellow-500">Fetching IP intelligence...</span>';
 
             const endpoint = input ? `https://ipapi.co/${input}/json/` : 'https://ipapi.co/json/';
 
@@ -381,35 +352,37 @@
                 const response = await fetch(endpoint);
                 const data = await response.json();
 
-                if(data.error) {
+                if (data.error) {
                     res.innerHTML = `<span class="text-red-500">Error: ${data.reason || 'Invalid IP address'}</span>`;
                     return;
                 }
 
                 res.innerHTML = `
-                    <div><span class="text-blue-400">IP:</span> ${data.ip}</div>
-                    <div><span class="text-blue-400">City/Region:</span> ${data.city || 'N/A'}, ${data.region || 'N/A'}</div>
-                    <div><span class="text-blue-400">Country:</span> ${data.country_name || 'N/A'} (${data.country_code || 'N/A'})</div>
-                    <div><span class="text-blue-400">ISP/ASN:</span> ${data.org || 'N/A'} (${data.asn || 'N/A'})</div>
-                    <div><span class="text-blue-400">Timezone:</span> ${data.timezone || 'N/A'}</div>
+                    <div><span class="text-blue-500 font-bold">IP:</span> ${data.ip}</div>
+                    <div><span class="text-blue-500 font-bold">Location:</span> ${data.city || 'N/A'}, ${data.region || 'N/A'}, ${data.country_name || 'N/A'}</div>
+                    <div><span class="text-blue-500 font-bold">ISP/Org:</span> ${data.org || 'N/A'}</div>
+                    <div><span class="text-blue-500 font-bold">ASN:</span> ${data.asn || 'N/A'}</div>
+                    <div><span class="text-blue-500 font-bold">Timezone:</span> ${data.timezone || 'N/A'}</div>
+                    <div><span class="text-blue-500 font-bold">Coordinates:</span> ${data.latitude}, ${data.longitude}</div>
                 `;
-            } catch (err) {
-                res.innerHTML = `<span class="text-red-500">Failed to fetch IP details. Check network or rate limits.</span>`;
+            } catch {
+                res.innerHTML = `<span class="text-red-500">Failed to fetch IP details. Please check network connectivity.</span>`;
             }
         }
 
         async function runDnsLookup() {
             const input = document.getElementById('target-input').value.trim();
             const recordType = document.getElementById('record-type').value;
+            const container = document.getElementById('dns-result-container');
             const res = document.getElementById('dns-result');
 
             if (!input) {
-                res.classList.remove('hidden');
-                res.innerHTML = '<span class="text-red-500">Please enter a valid domain (e.g. google.com)</span>';
+                container.classList.remove('hidden');
+                res.innerHTML = '<span class="text-red-500">Please enter a valid hostname/domain (e.g., google.com)</span>';
                 return;
             }
 
-            res.classList.remove('hidden');
+            container.classList.remove('hidden');
             res.innerHTML = `<span class="text-yellow-500">Resolving ${recordType} records...</span>`;
 
             try {
@@ -421,14 +394,20 @@
                     return;
                 }
 
-                let outputHtml = `<div class="text-green-500 border-b border-slate-700 pb-1 mb-2">DNS Response (${recordType}):</div>`;
+                let outputHtml = `<div class="text-emerald-600 dark:text-emerald-400 font-bold mb-2">DNS Records (${recordType}):</div>`;
                 data.Answer.forEach(ans => {
-                    outputHtml += `<div><span class="text-blue-400">${ans.name}</span> &#8594; <span class="text-white">${ans.data}</span> <span class="text-slate-500">(TTL: ${ans.TTL}s)</span></div>`;
+                    outputHtml += `<div><span class="text-blue-500">${ans.name}</span> &#8594; <span class="font-bold">${ans.data}</span> <span class="text-slate-400">(TTL: ${ans.TTL}s)</span></div>`;
                 });
                 res.innerHTML = outputHtml;
-            } catch (err) {
+            } catch {
                 res.innerHTML = `<span class="text-red-500">DNS Resolution failed.</span>`;
             }
+        }
+
+        function copyResults() {
+            const text = document.getElementById('dns-result').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Results copied to clipboard!");
         }
 
         // --- Live Search & Category Filtering Logic ---
