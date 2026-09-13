@@ -1,250 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenUtility — Simple, Open-Source Web Tools</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#00a3e0',
-                            green: '#88c542',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body {
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        .bg-checkerboard {
-            background-color: #e5e7eb;
-            background-image: linear-gradient(45deg, #cbd5e1 25%, transparent 25%), linear-gradient(-45deg, #cbd5e1 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #cbd5e1 75%), linear-gradient(-45deg, transparent 75%, #cbd5e1 75%);
-            background-size: 16px 16px;
-            background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-        }
-        .dark .bg-checkerboard {
-            background-color: #0f172a;
-            background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col justify-between max-w-5xl mx-auto px-6 py-4 bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
-
-    <!-- Interactive Callout / Announcement Banner -->
-    <div id="announcement-banner" class="mb-4 p-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center justify-between shadow-md text-xs font-medium">
-        <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold uppercase text-[10px]">New</span>
-            <span>Client-side Background Remover tool is now live on OpenUtility!</span>
-        </div>
-        <button onclick="document.getElementById('announcement-banner').remove()" class="p-1 hover:bg-white/20 rounded-lg transition" aria-label="Dismiss">
-            <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-    </div>
-
-    <!-- Header / Navbar -->
-    <header class="flex justify-between items-center py-4 border-b border-slate-200 dark:border-slate-800/80 relative">
-        <div class="flex items-center gap-3">
-            <img src="openutility-logo.png" alt="OpenUtility Logo" class="w-10 h-10 object-contain" onerror="this.src='https://via.placeholder.com/40?text=OU'">
-            <div>
-                <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">OpenUtility</h1>
-                <p class="text-xs text-slate-500 dark:text-slate-400 font-mono">Open Source Tool Suite</p>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <nav class="hidden md:flex space-x-6 text-sm text-slate-600 dark:text-slate-400 font-medium">
-                <a href="#websites" class="hover:text-blue-500 transition">Websites & Tools</a>
-                <a href="#faq" class="hover:text-blue-500 transition">FAQ</a>
-                <a href="#about" class="hover:text-blue-500 transition">About</a>
-                <a href="#creator" class="hover:text-blue-500 transition">Creator</a>
-            </nav>
-            
-            <!-- Dark / Light Mode Switch Button -->
-            <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700" aria-label="Toggle Theme">
-                <i data-lucide="sun" id="theme-icon-sun" class="w-4 h-4 hidden"></i>
-                <i data-lucide="moon" id="theme-icon-moon" class="w-4 h-4"></i>
-            </button>
-
-            <!-- Mobile Menu Toggle Button -->
-            <button id="mobile-menu-toggle" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" aria-label="Toggle Menu">
-                <i data-lucide="menu" class="w-4 h-4"></i>
-            </button>
-        </div>
-
-        <!-- Refined Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 mt-2 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl z-40 flex flex-col gap-3 text-sm font-medium">
-            <a href="#websites" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Websites & Tools</a>
-            <a href="#faq" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">FAQ</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">About</a>
-            <a href="#creator" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Creator</a>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="space-y-16 my-10">
-
-        <!-- Hero Section -->
-        <section id="about" class="text-center space-y-6 max-w-3xl mx-auto pt-6">
-            <span class="inline-flex items-center gap-2 px-3 py-1 text-xs font-mono bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full border border-blue-500/20">
-                🌱 FREE & OPEN-SOURCE WEB UTILITIES
-            </span>
-            <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-                Simple, open-source web tools.
-            </h2>
-            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base">
-                OpenUtility is a platform where we build and share useful, lightweight tools for everyone to use. Ad-free, fast, and completely open-source.
-            </p>
-            
-            <div class="flex justify-center gap-4 pt-2">
-                <a href="#websites" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition shadow-lg shadow-blue-500/20">
-                    Explore Directory
-                </a>
-                <a href="https://github.com/OpenUtility" target="_blank" class="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold rounded-lg transition border border-slate-300 dark:border-slate-700 flex items-center gap-2">
-                    <i data-lucide="github" class="w-4 h-4"></i> View on GitHub
-                </a>
-            </div>
-
-            <!-- Visitor Stats Bar -->
-            <div class="pt-4 flex items-center justify-center gap-6 sm:gap-12">
-                <div class="flex items-center gap-2.5">
-                    <div class="p-2 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                        <i data-lucide="users" class="w-4 h-4"></i>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Page Visits</div>
-                        <div id="total-visitors" class="text-sm font-bold text-slate-900 dark:text-white font-mono">Loading...</div>
-                    </div>
-                </div>
-
-                <div class="h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
-
-                <div class="flex items-center gap-2.5">
-                    <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                        <i data-lucide="eye" class="w-4 h-4"></i>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Your Visits</div>
-                        <div id="user-visits" class="text-sm font-bold text-slate-900 dark:text-white font-mono">1</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Directory Section -->
-        <section id="websites" class="space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800/80 pb-4">
-                <div>
-                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Our Directory</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400" id="tool-count">4 Utilities Available</p>
-                </div>
-
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                    <div class="relative">
-                        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" id="search-input" placeholder="Search tools or sites..." class="w-full sm:w-64 pl-9 pr-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white rounded-xl border border-slate-200 dark:border-slate-800 text-xs focus:outline-none focus:border-blue-500 transition">
-                    </div>
-
-                    <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800" id="category-filters">
-                        <button data-filter="all" class="filter-btn active-filter px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-blue-600 text-white">All</button>
-                        <button data-filter="website" class="filter-btn px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">Websites</button>
-                        <button data-filter="utility" class="filter-btn px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">Utilities</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6" id="tools-grid">
-
-                <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="mc tools servertoolkit minecraft diagnostics ping checker">
-                    <div>
-                        <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
-                            <i data-lucide="terminal" class="w-6 h-6"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">MC Tools</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            Diagnostic utilities, ping checkers, and configuration helpers for Minecraft server admins.
-                        </p>
-                    </div>
-                    <a href="https://mctools.wiki.gd/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 pt-4 border-t border-slate-200 dark:border-slate-800/60 w-full text-left">
-                        Visit Website <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                    </a>
-                </div>
-
-                <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="website" data-title="speed test latency ping check network response time connection">
-                    <div>
-                        <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
-                            <i data-lucide="gauge" class="w-6 h-6"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Speed Test</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            A minimal, fast, zero-fluff tool to measure ping, network latency, and connection response time.
-                        </p>
-                    </div>
-                    <a href="https://speedtest.govt.hu/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 pt-4 border-t border-slate-200 dark:border-slate-800/60 w-full text-left">
-                        Visit Website <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                    </a>
-                </div>
-
-                <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="utility" data-title="ip lookup dns checker geolocation mx records networking domain host location">
-                    <div>
-                        <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
-                            <i data-lucide="globe" class="w-6 h-6"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">IP & DNS Diagnostic</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            Inspect public IP address details, geolocation, ISP, and perform live DNS record lookups.
-                        </p>
-                    </div>
-                    <button class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 pt-4 border-t border-slate-200 dark:border-slate-800/60 w-full text-left">
-                        Launch Tool <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                </div>
-
-                <div class="tool-card group p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-sm dark:shadow-none" data-category="utility" data-title="background remover transparent image png key photo erase photo editor chroma">
-                    <div>
-                        <div class="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-xl w-fit mb-4 border border-slate-200 dark:border-slate-700">
-                            <i data-lucide="scissors" class="w-6 h-6"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Background Remover</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            Remove solid/uniform backgrounds or chroma keys directly inside your browser. Exports transparent PNGs.
-                        </p>
-                    </div>
-                    <button class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 pt-4 border-t border-slate-200 dark:border-slate-800/60 w-full text-left">
-                        Launch Tool <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                </div>
-
-            </div>
-
-            <div id="no-results" class="hidden text-center py-12 space-y-3">
-                <i data-lucide="search-x" class="w-10 h-10 mx-auto text-slate-500"></i>
-                <p class="text-sm font-semibold text-slate-700 dark:text-slate-300">No matching utilities found</p>
-                <p class="text-xs text-slate-500">Try adjusting your search query or switching categories.</p>
-            </div>
-        </section>
-
-        <!-- Structured FAQ Section -->
-        <section id="faq" class="space-y-6 pt-6">
-            <div class="border-b border-slate-200 dark:border-slate-800/80 pb-4">
-                <h3 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Frequently Asked Questions</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Everything you need to know about the OpenUtility platform</p>
-            </div>
-
-            <div class="space-y-4 max-w-3xl">
-                <details class="group p-5 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
-                    <summary class="flex items-center justify-between font-semibold text-sm text-slate-900 dark:text-white">
+y class="flex items-center justify-between font-semibold text-sm text-slate-900 dark:text-white">
                         <span>Are my uploaded files or data saved on a server?</span>
                         <span class="transition group-open:rotate-180">
                             <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500"></i>
@@ -283,13 +37,64 @@
 
     </main>
 
-    <!-- Footer Section -->
-    <footer class="mt-16 py-6 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
-        <p>© 2026 OpenUtility. Built for the web community.</p>
-        <div class="flex items-center gap-4">
-            <a href="https://github.com/OpenUtility" target="_blank" class="hover:text-blue-500 transition">GitHub</a>
-            <span>•</span>
-            <a href="#about" class="hover:text-blue-500 transition">About</a>
+    <!-- Floating Back-to-Top Button -->
+    <button id="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="fixed bottom-6 right-6 p-3 rounded-full bg-blue-600 text-white shadow-xl hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 opacity-0 pointer-events-none transition-all duration-300 z-50 group" aria-label="Back to Top">
+        <i data-lucide="arrow-up" class="w-5 h-5 group-hover:-translate-y-0.5 transition-transform"></i>
+    </button>
+
+    <!-- Redesigned 3-Column Footer -->
+    <footer class="mt-20 pt-12 pb-8 border-t border-slate-200 dark:border-slate-800/80 text-xs text-slate-600 dark:text-slate-400">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            
+            <!-- Column 1: Brand & Licensing -->
+            <div class="space-y-3">
+                <div class="flex items-center gap-2.5">
+                    <img src="openutility-logo.png" alt="OpenUtility Logo" class="w-6 h-6 object-contain" onerror="this.src='https://via.placeholder.com/24?text=OU'">
+                    <span class="font-bold text-sm text-slate-900 dark:text-white tracking-tight">OpenUtility</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                    Lightweight, privacy-first, zero-fluff web tools built for developers, server administrators, and everyday users.
+                </p>
+                <p class="text-[11px] text-slate-400 dark:text-slate-500 pt-1 font-mono">
+                    Released under the <a href="https://opensource.org/licenses/MIT" target="_blank" class="underline hover:text-slate-700 dark:hover:text-slate-300 transition">MIT License</a>.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Quick Navigation</h4>
+                <ul class="space-y-2">
+                    <li><a href="#websites" class="hover:text-blue-500 transition">Websites & Tools Directory</a></li>
+                    <li><a href="#faq" class="hover:text-blue-500 transition">Frequently Asked Questions</a></li>
+                    <li><a href="#about" class="hover:text-blue-500 transition">About OpenUtility</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Community & Source -->
+            <div class="space-y-3">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Community & Source</h4>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="https://github.com/OpenUtility" target="_blank" class="inline-flex items-center gap-1.5 hover:text-blue-500 transition">
+                            <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Repository
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/OpenUtility/issues" target="_blank" class="inline-flex items-center gap-1.5 hover:text-blue-500 transition">
+                            <i data-lucide="bug" class="w-3.5 h-3.5"></i> Report an Issue / Request Feature
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="pt-6 border-t border-slate-200/60 dark:border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-slate-400 dark:text-slate-500">
+            <p>© 2026 OpenUtility. All rights reserved.</p>
+            <p class="flex items-center gap-1">
+                <span>Designed with simplicity & open-source tools.</span>
+            </p>
         </div>
     </footer>
 
@@ -361,15 +166,3 @@
 
             toolCountEl.textContent = `${visibleCount} Utilit${visibleCount === 1 ? 'y' : 'ies'} Available`;
 
-            if (visibleCount === 0) {
-                noResults.classList.remove('hidden');
-            } else {
-                noResults.classList.add('hidden');
-            }
-        }
-
-        // Mock Visit Counter Implementation
-        document.getElementById('total-visitors').textContent = '1,248';
-    </script>
-</body>
-</html>
