@@ -521,8 +521,8 @@
             canvas.height = currentImage.height;
             ctx.drawImage(currentImage, 0, 0);
 
-            // Sample top-left corner pixel
-            const pixel = ctx.getImageData(0, 0, 1, 1).data;
+            // Sample pixel at (5, 5) to avoid border artifacts
+            const pixel = ctx.getImageData(5, 5, 1, 1).data;
             const hex = "#" + ((1 << 24) + (pixel[0] << 16) + (pixel[1] << 8) + pixel[2]).toString(16).slice(1);
             
             document.getElementById('key-color').value = hex;
@@ -538,6 +538,8 @@
             canvas.width = currentImage.width;
             canvas.height = currentImage.height;
 
+            // Clear previous buffer and redraw clean base image
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(currentImage, 0, 0);
 
             const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -553,7 +555,7 @@
                 const g = data[i + 1];
                 const b = data[i + 2];
 
-                // Calculate Euclidean color distance
+                // Euclidean distance formula
                 const distance = Math.sqrt(
                     (r - target.r) ** 2 +
                     (g - target.g) ** 2 +
@@ -561,7 +563,7 @@
                 );
 
                 if (distance <= tolerance) {
-                    data[i + 3] = 0; // Set Alpha to transparent
+                    data[i + 3] = 0; // Alpha channel to transparent
                 }
             }
 
